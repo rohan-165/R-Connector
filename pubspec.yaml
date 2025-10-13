@@ -116,6 +116,8 @@ dev_dependencies:
   
   # Code generation for Get It service
   injectable_generator: ^2.7.0
+  # Commit Agent helper
+  commit_agent: ^1.0.0
 
 
 
