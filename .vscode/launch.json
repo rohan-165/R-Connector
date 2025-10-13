@@ -1,0 +1,81 @@
+{
+        "version": "0.2.0",
+        "configurations": [
+                {
+                        "name": "Launch dev debug",
+                        "request": "launch",
+                        "type": "dart",
+                        "program": "lib/main_dev.dart",
+                        "args": [
+                                "--flavor",
+                                "dev",
+                                "--target",
+                                "lib/main_dev.dart"
+                        ]
+                },
+                {
+                        "name": "Launch prod debug",
+                        "request": "launch",
+                        "type": "dart",
+                        "program": "lib/main_prod.dart",
+                        "args": [
+                                "--flavor",
+                                "prod",
+                                "--target",
+                                "lib/main_prod.dart"
+                        ]
+                },
+                {
+                        "name": "Launch dev profile",
+                        "request": "launch",
+                        "type": "dart",
+                        "program": "lib/main_dev.dart",
+                        "args": [
+                                "--flavor",
+                                "dev",
+                                "--target",
+                                "lib/main_dev.dart",
+                                "--profile"
+                        ]
+                },
+                {
+                        "name": "Launch prod profile",
+                        "request": "launch",
+                        "type": "dart",
+                        "program": "lib/main_prod.dart",
+                        "args": [
+                                "--flavor",
+                                "prod",
+                                "--target",
+                                "lib/main_prod.dart",
+                                "--profile"
+                        ]
+                },
+                {
+                        "name": "Launch dev release",
+                        "request": "launch",
+                        "type": "dart",
+                        "program": "lib/main_dev.dart",
+                        "args": [
+                                "--flavor",
+                                "dev",
+                                "--target",
+                                "lib/main_dev.dart",
+                                "--release"
+                        ]
+                },
+                {
+                        "name": "Launch prod release",
+                        "request": "launch",
+                        "type": "dart",
+                        "program": "lib/main_prod.dart",
+                        "args": [
+                                "--flavor",
+                                "prod",
+                                "--target",
+                                "lib/main_prod.dart",
+                                "--release"
+                        ]
+                }
+        ]
+}
