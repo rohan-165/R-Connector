@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../features/auth/presentation/screen/login_screen.dart';
-import '../../features/dashboard/presentation/screen/landing_screen.dart';
+import '../../features/support_user/presentation/screen/consignment_detail_screen.dart';
+import '../../features/support_user/presentation/screen/support_user_dashbord.dart';
 import 'routes_name.dart';
 
 class RouteGenerator {
@@ -16,10 +17,16 @@ class RouteGenerator {
           settings: settings,
           builder: (_) => const LoginScreen(),
         );
-      case RoutesName.landingScreen:
+
+      case RoutesName.supportUserDashboard:
         return MaterialPageRoute(
           settings: settings,
-          builder: (_) => const LandingScreen(),
+          builder: (_) => const SupportUserDashbord(),
+        );
+      case RoutesName.consignmentDetailScreen:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) => const ConsignmentDetailScreen(),
         );
 
       default:

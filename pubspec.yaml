@@ -106,6 +106,10 @@ dependencies:
   # Url Luncher
   url_launcher: ^6.3.2
 
+  # QR Code Scanner
+  ai_barcode_scanner: ^7.1.0
+
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -10,7 +10,6 @@ import 'core/bloc/location_cubit.dart';
 import 'core/bloc/theme_cubit.dart';
 import 'core/services/get_it/service_locator.dart';
 import 'features/auth/presentation/login_bloc/login_bloc.dart';
-import 'features/dashboard/presentation/bloc/nav_bar_cubit/nav_bar_cubit.dart';
 
 // import 'features/auth/presentation/cubit/app_version_cubit.dart';
 
@@ -24,7 +23,6 @@ List<SingleChildWidget> _coreBlocProvider() => [
   _p<ThemeCubit>(),
   _p<LanguageCubit>(),
   _p<LoginBloc>(),
-  _p<NavBarCubit>(),
   _p<LocationCubit>(),
 ];
 

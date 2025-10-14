@@ -1,4 +1,3 @@
-import '../../features/dashboard/presentation/bloc/nav_bar_cubit/nav_bar_cubit.dart';
 import '../bloc/app_open_cubit.dart';
 import '../bloc/language_cubit.dart';
 import '../bloc/location_cubit.dart';
@@ -31,7 +30,6 @@ class AppClearService {
     getIt<ThemeCubit>().resetTheme();
     getIt<LanguageCubit>().resetLanguage();
     getIt<LocationCubit>().reset();
-    getIt<NavBarCubit>().resetNavBar();
 
     if (rememberMe) {
       getIt<SharedPrefsServices>().setString(

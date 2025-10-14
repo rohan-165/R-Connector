@@ -1,9 +1,9 @@
+import 'package:dri_flutter/features/support_user/presentation/screen/support_user_dashbord.dart';
 import 'package:flutter/material.dart';
 
 import 'core/services/get_it/service_locator.dart';
 import 'core/services/local_storage/shared_pref_data.dart';
 import 'features/auth/presentation/screen/login_screen.dart';
-import 'features/dashboard/presentation/screen/landing_screen.dart';
 
 class EntryScreen extends StatefulWidget {
   const EntryScreen({super.key});
@@ -25,7 +25,7 @@ class _EntryScreenState extends State<EntryScreen> {
   @override
   Widget build(BuildContext context) {
     return (token ?? '').isNotEmpty
-        ? const LandingScreen()
+        ? const SupportUserDashbord()
         : const LoginScreen();
   }
 }

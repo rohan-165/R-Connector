@@ -57,7 +57,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
             );
             getIt<SharedPrefData>().saveAuthToken(token: user.token);
             getIt<NavigationService>().pushNamedAndRemoveUntil(
-              RoutesName.landingScreen,
+              RoutesName.supportUserDashboard,
               false,
             );
           } else {
