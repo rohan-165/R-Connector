@@ -12,8 +12,6 @@ import 'core/services/get_it/service_locator.dart';
 import 'features/auth/presentation/login_bloc/login_bloc.dart';
 import 'features/support_user/presentation/consignment_detail_bloc/consignment_detail_bloc.dart';
 
-// import 'features/auth/presentation/cubit/app_version_cubit.dart';
-
 // Short helper to avoid repetitive BlocProvider boilerplate
 BlocProvider<T> _p<T extends StateStreamableSource<Object?>>() =>
     BlocProvider<T>.value(value: getIt<T>());
