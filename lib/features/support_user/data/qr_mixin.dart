@@ -6,10 +6,11 @@ import 'package:dri_flutter/core/services/navigation_service.dart';
 import 'package:dri_flutter/core/services/permission_service.dart';
 import 'package:dri_flutter/core/utils/app_toast.dart';
 import 'package:dri_flutter/core/utils/debug_log_utils.dart';
-import 'package:dri_flutter/features/support_user/domain/scan_model.dart';
+import 'package:dri_flutter/features/support_user/domain/model/scan_model.dart';
 import 'package:flutter/material.dart';
 import 'package:ai_barcode_scanner/ai_barcode_scanner.dart';
 import '../../../core/utils/lzstring.dart';
+import '../presentation/consignment_detail_bloc/consignment_detail_bloc.dart';
 
 mixin QrMixin {
   Future<void> qrScanner(BuildContext context) async {
@@ -60,6 +61,10 @@ mixin QrMixin {
                   }
 
                   final scanData = ScanData.fromJson(decoded);
+
+                  getIt<ConsignmentDetailBloc>().add(
+                    ConsignmentScanDetailEvent(scanData: scanData),
+                  );
 
                   // Navigate to detail page
                   getIt<NavigationService>().pushReplacementNamed(

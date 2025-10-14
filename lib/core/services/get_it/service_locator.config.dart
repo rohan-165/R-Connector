@@ -17,6 +17,8 @@ import '../../../features/auth/data/auth_repo_impl.dart' as _i927;
 import '../../../features/auth/domain/repo/auth_repo.dart' as _i913;
 import '../../../features/auth/presentation/login_bloc/login_bloc.dart'
     as _i1002;
+import '../../../features/support_user/presentation/consignment_detail_bloc/consignment_detail_bloc.dart'
+    as _i677;
 import '../../bloc/app_open_cubit.dart' as _i150;
 import '../../bloc/internet_cubit.dart' as _i636;
 import '../../bloc/language_cubit.dart' as _i957;
@@ -50,6 +52,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i150.AppOpenCubit>(() => _i150.AppOpenCubit());
     gh.lazySingleton<_i67.LocationCubit>(() => _i67.LocationCubit());
     gh.lazySingleton<_i1002.LoginBloc>(() => _i1002.LoginBloc());
+    gh.lazySingleton<_i677.ConsignmentDetailBloc>(
+      () => _i677.ConsignmentDetailBloc(),
+    );
     gh.lazySingleton<_i324.SharedPrefData>(() => _i566.SharedPrefDataImpl());
     gh.lazySingleton<_i913.AuthRepo>(() => _i927.AuthRepoImpl());
     gh.lazySingleton<_i942.SharedPrefsServices>(

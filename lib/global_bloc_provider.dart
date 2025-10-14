@@ -10,6 +10,7 @@ import 'core/bloc/location_cubit.dart';
 import 'core/bloc/theme_cubit.dart';
 import 'core/services/get_it/service_locator.dart';
 import 'features/auth/presentation/login_bloc/login_bloc.dart';
+import 'features/support_user/presentation/consignment_detail_bloc/consignment_detail_bloc.dart';
 
 // import 'features/auth/presentation/cubit/app_version_cubit.dart';
 
@@ -25,5 +26,9 @@ List<SingleChildWidget> _coreBlocProvider() => [
   _p<LoginBloc>(),
   _p<LocationCubit>(),
 ];
+List<SingleChildWidget> _supportBlocProvider() => [_p<ConsignmentDetailBloc>()];
 
-List<SingleChildWidget> globalBlocProvider() => [..._coreBlocProvider()];
+List<SingleChildWidget> globalBlocProvider() => [
+  ..._coreBlocProvider(),
+  ..._supportBlocProvider(),
+];
