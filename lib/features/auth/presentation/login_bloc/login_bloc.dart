@@ -3,11 +3,15 @@ import 'dart:developer';
 
 import 'package:dri_flutter/core/common/failure_state.dart';
 import 'package:dri_flutter/core/constants/enum.dart';
+import 'package:dri_flutter/core/routes/routes_name.dart';
+import 'package:dri_flutter/core/services/local_storage/shared_pref_data.dart';
+import 'package:dri_flutter/core/services/navigation_service.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/common/abs_normal_state.dart';
+import '../../../../core/common/data_parsh.dart';
 import '../../../../core/services/get_it/service_locator.dart';
 import '../../domain/model/user_model.dart';
 import '../../domain/repo/auth_repo.dart';
@@ -33,9 +37,40 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       password: event.password,
     );
 
-    await response.fold(
-      (l) async {
-        try {} catch (e, st) {
+    response.fold(
+      (l) {
+        try {
+          UserModel user = parseJson<UserModel>(
+            json: l,
+            fromJson: (json) => UserModel.fromMap(json),
+            extraKey: 'info',
+          );
+
+          if (user.token.isNotEmpty) {
+            emit(
+              state.copyWith(
+                loginState: state.loginState.copyWith(
+                  absNormalStatus: AbsNormalStatus.SUCCESS,
+                  data: user,
+                ),
+              ),
+            );
+            getIt<SharedPrefData>().saveAuthToken(token: user.token);
+            getIt<NavigationService>().pushNamedAndRemoveUntil(
+              RoutesName.landingScreen,
+              false,
+            );
+          } else {
+            emit(
+              state.copyWith(
+                loginState: state.loginState.copyWith(
+                  absNormalStatus: AbsNormalStatus.ERROR,
+                  failure: Failure(message: "Failed to parse user data"),
+                ),
+              ),
+            );
+          }
+        } catch (e, st) {
           log("Login parse error: $e", stackTrace: st);
           emit(
             state.copyWith(
@@ -47,7 +82,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           );
         }
       },
-      (r) async {
+      (r) {
         emit(
           state.copyWith(
             loginState: state.loginState.copyWith(
@@ -58,18 +93,5 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         );
       },
     );
-  }
-
-  /// Parse login response -> returns (token, user)
-  (String?, UserModel)? _parseLoginResponse(dynamic response) {
-    if (response is! Map<String, dynamic>) return null;
-    final data = response['data']?['success'];
-    if (data is! Map<String, dynamic>) return null;
-
-    final token = data['token'] as String?;
-    final userData = data['user'] as Map<String, dynamic>?;
-    final user = userData != null ? UserModel.fromJson(userData) : null;
-
-    return (token, user ?? UserModel());
   }
 }

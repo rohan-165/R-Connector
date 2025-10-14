@@ -20,7 +20,7 @@ class ApiManager {
       connectTimeout: const Duration(seconds: 30),
       receiveTimeout: const Duration(minutes: 1),
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/x-www-form-urlencoded",
         "Accept": "application/json",
       },
     );

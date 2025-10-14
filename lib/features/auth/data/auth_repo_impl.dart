@@ -1,3 +1,5 @@
+import 'package:dio/dio.dart';
+import 'package:dri_flutter/core/flavor/get_env_config.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../core/constants/typedef.dart';
@@ -7,19 +9,25 @@ import '../domain/repo/auth_repo.dart';
 
 @LazySingleton(as: AuthRepo)
 class AuthRepoImpl extends AuthRepo {
-  static const String _baseUrl = "/api/v1"; // Replace with actual base URL
-  static const String _loginEndpoint = "$_baseUrl/login";
-  static const String versionEndpoint = "$_baseUrl/get-app-version";
+  static final String _secKey = GetEnvConfig.secKey;
+  static const String _baseUrl = "/api";
+  static const String _loginEndpoint = "$_baseUrl/consignment/login";
+  static const String versionEndpoint = "$_baseUrl/logout";
 
   @override
   FutureDynamicResponse login({
     required String email,
     required String password,
   }) {
+    final formData = {
+      "username": email,
+      "password": password,
+      'sec_key': _secKey,
+    };
     return getIt<ApiRequest>().getResponse(
       endPoint: _loginEndpoint,
       apiMethods: ApiMethods.post,
-      body: {"email": email, "password": password},
+      body: FormData.fromMap(formData),
     );
   }
 
