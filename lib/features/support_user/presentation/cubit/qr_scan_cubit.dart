@@ -67,7 +67,9 @@ class QrScanCubit extends Cubit<AbsNormalState<ScanData>> with QrMixin {
       );
 
       // Navigate to detail page
-      getIt<NavigationService>().pushNamed(RoutesName.qrScanInfoScreen);
+      getIt<NavigationService>().pushReplacementNamed(
+        RoutesName.qrScanInfoScreen,
+      );
     } catch (e, st) {
       DebugLoggerService.log(
         'Error parsing QR data: $e\n$st',

@@ -10,12 +10,13 @@ import 'package:ai_barcode_scanner/ai_barcode_scanner.dart';
 import '../../../core/utils/lzstring.dart';
 
 mixin QrMixin {
-  static const String _hasData =
-      'N4Ig9gdiBcIBYBcEAcDO0A6B6bA3AxgqgCYBOAlgHRlUDmYulEy2AhsudvmALY+RtUqcrQgBTYgGFIw0TzEQEAETEJW5ADbYAHAEZtAJgAMu3UYCsAFl3ntIADTgAZk5ih85GCD2GTZqzZ2jvhQsBgArkYAnEYA7BHRBtoJUZbEKQYARimWmQAEGbo58ZFRBumlAMwGGawplUY5FdGV2gWlBnWlafWNVWKU9TVVTpQOIPjIXg02NlHaAGzjuKEgAAoASgCCSgCiAMoAEsYGugaW5gDSh1sL5rqWywhea+GZGuT448SrANYK5Ey3x4q3mliMCyM2ihum+yGIXgAMltEQBJAAqawAqhs4RovPstgA5XZrLbfBAI2CXLbow4AWWJSixFPx1NpDKZWLy32Iz1gxkMAFojAYhac8rpYtADJUZeZvqgvBAwONSDwvAgxKhno5iGzQEDYEZxl9jeMpua9aQvAZxqqrRMbY6IEaQCaAL6OHhs93jH1UiDhDQaD0eoA==';
+  // static const String _hasData =
+  //     'N4Ig9gdiBcIBYBcEAcDO0A6B6bA3AxgqgCYBOAlgHRlUDmYulEy2AhsudvmALY+RtUqcrQgBTYgGFIw0TzEQEAETEJW5ADbYAHAEZtAJgAMu3UYCsAFl3ntIADTgAZk5ih85GCD2GTZqzZ2jvhQsBgArkYAnEYA7BHRBtoJUZbEKQYARimWmQAEGbo58ZFRBumlAMwGGawplUY5FdGV2gWlBnWlafWNVWKU9TVVTpQOIPjIXg02NlHaAGzjuKEgAAoASgCCSgCiAMoAEsYGugaW5gDSh1sL5rqWywhea+GZGuT448SrANYK5Ey3x4q3mliMCyM2ihum+yGIXgAMltEQBJAAqawAqhs4RovPstgA5XZrLbfBAI2CXLbow4AWWJSixFPx1NpDKZWLy32Iz1gxkMAFojAYhac8rpYtADJUZeZvqgvBAwONSDwvAgxKhno5iGzQEDYEZxl9jeMpua9aQvAZxqqrRMbY6IEaQCaAL6OHhs93jH1UiDhDQaD0eoA==';
 
-  void qrScanStatic() => getIt<QrScanCubit>().getScanData(hasString: _hasData);
+  // void qrScanStatic() => getIt<QrScanCubit>().getScanData(hasString: _hasData);
 
   Future<void> qrScanner(BuildContext context) async {
+    bool isProcessing = false; // 👈 Guard flag
     PermissionService.requestPermission(
       permissionFor: PermissionFor.camera,
       onGrantedCallback: () async {
@@ -23,8 +24,10 @@ mixin QrMixin {
           MaterialPageRoute(
             builder: (context) => AiBarcodeScanner(
               onDetect: (BarcodeCapture capture) async {
+                // 👇 Prevent multiple detections
+                if (isProcessing) return;
+                isProcessing = true;
                 final rawValue = capture.barcodes.firstOrNull?.rawValue ?? '';
-
                 if (rawValue.isEmpty) {
                   AppToasts.showToast(
                     message: 'No QR code detected!',

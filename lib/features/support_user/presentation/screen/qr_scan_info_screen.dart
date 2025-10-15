@@ -172,34 +172,3 @@ class _QRScanInfoScreenState extends State<QRScanInfoScreen> {
     ).padBottom(bottom: 10.h);
   }
 }
-
-// {
-//   "on": "https://vctsdri.dri.gov.np/api/common/assignedConsignmentDetail/8182011054158",
-//   "off": {
-//     "ci": "8182011054158",
-//     "cn": "इन्फो डेभलपर्स प्रा.लि.",
-//     "cp": "301515986",
-//     "vn": "PRADESH2021245KHA6514",
-//     "vt": "Public",
-//     "dn": "kenib",
-//     "dmn": "9840608081",
-//     "dpd": "LALITPUR",
-//     "dpl": "SANEPA",
-//     "dtd": "KATHMANDU",
-//     "dtl": "KATHMANDU ",
-//     "ddt": "2082-02-21 17:23:25",
-//     "ds": "no",
-//     "rm": "test",
-//     "dl": {
-//       "b": "0",
-//       "c": "0",
-//       "p": "0",
-//       "dr": "2",
-//       "o": "0",
-//       "cr": "0",
-//       "nb": "0"
-//     },
-//     "ml": "0",
-//     "mld": null
-//   }
-// }

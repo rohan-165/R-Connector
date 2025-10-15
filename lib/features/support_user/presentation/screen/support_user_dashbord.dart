@@ -34,7 +34,7 @@ class _SupportUserDashbordState extends State<SupportUserDashbord>
               CircleAvatar(
                 radius: 80.r,
                 child: Icon(Icons.qr_code_2_sharp, size: 120.sp),
-              ).onTap(() => qrScanStatic()).padBottom(),
+              ).onTap(() => qrScanner(context)).padBottom(),
             ],
           ).padHorizontal(),
         ),
