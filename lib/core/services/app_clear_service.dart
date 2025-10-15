@@ -1,28 +1,17 @@
+import 'package:dri_flutter/features/support_user/presentation/consignment_detail_bloc/consignment_detail_bloc.dart';
+import 'package:dri_flutter/features/support_user/presentation/cubit/qr_scan_cubit.dart';
+
 import '../bloc/app_open_cubit.dart';
 import '../bloc/language_cubit.dart';
 import '../bloc/location_cubit.dart';
 import '../bloc/theme_cubit.dart';
-import '../constants/shared_pref_keys.dart';
 import '../routes/routes_name.dart';
 import 'get_it/service_locator.dart';
 import 'local_storage/shared_pref_data.dart';
-import 'local_storage/shared_pref_service.dart';
 import 'navigation_service.dart';
 
 class AppClearService {
   void clearAllData() async {
-    final String? email = getIt<SharedPrefsServices>().getString(
-      key: SharedPrefKeys.userNameKey,
-    );
-    final String? password = getIt<SharedPrefsServices>().getString(
-      key: SharedPrefKeys.passwordKey,
-    );
-    final bool rememberMe =
-        getIt<SharedPrefsServices>().getBool(
-          key: SharedPrefKeys.rememberMeKey,
-        ) ??
-        false;
-
     getIt<SharedPrefData>().clearAuthToken();
     getIt<SharedPrefData>().clearAllSharedData();
 
@@ -30,21 +19,8 @@ class AppClearService {
     getIt<ThemeCubit>().resetTheme();
     getIt<LanguageCubit>().resetLanguage();
     getIt<LocationCubit>().reset();
-
-    if (rememberMe) {
-      getIt<SharedPrefsServices>().setString(
-        key: SharedPrefKeys.userNameKey,
-        value: email ?? '',
-      );
-      getIt<SharedPrefsServices>().setString(
-        key: SharedPrefKeys.passwordKey,
-        value: password ?? '',
-      );
-      getIt<SharedPrefsServices>().setBool(
-        key: SharedPrefKeys.rememberMeKey,
-        value: rememberMe,
-      );
-    }
+    getIt<QrScanCubit>().reset();
+    getIt<ConsignmentDetailBloc>().add(ConsignmentDetailResetEvent());
 
     getIt<NavigationService>().pushNamedAndRemoveUntil(
       RoutesName.loginScreen,

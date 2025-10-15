@@ -1,5 +1,8 @@
+import 'package:dri_flutter/core/constants/app_colors.dart';
 import 'package:dri_flutter/core/extension/build_context_extension.dart';
 import 'package:dri_flutter/core/extension/widget_extensions.dart';
+import 'package:dri_flutter/core/localization/app_locale.dart';
+import 'package:dri_flutter/core/services/app_clear_service.dart';
 import 'package:dri_flutter/features/support_user/data/qr_mixin.dart';
 import 'package:dri_flutter/widget/app_bar_widget.dart';
 import 'package:dri_flutter/widget/app_exit_widget.dart';
@@ -20,7 +23,22 @@ class _SupportUserDashbordState extends State<SupportUserDashbord>
     return PopScopeWidget(
       canPop: false,
       child: Scaffold(
-        appBar: AppBarWidget(title: 'Support User Dashboard'),
+        appBar: AppBarWidget(
+          isCenterTitle: false,
+          title: 'Support User Dashboard',
+          action: [
+            TextButton.icon(
+              onPressed: () => AppClearService().clearAllData(),
+              icon: Icon(Icons.logout, color: AppColors.whiteColor),
+              label: Text(
+                context.l10(AppLocale.logout),
+                style: context.textTheme.titleLarge?.copyWith(
+                  color: AppColors.whiteColor,
+                ),
+              ),
+            ),
+          ],
+        ),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
