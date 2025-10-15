@@ -2,7 +2,7 @@
 
 import 'dart:io';
 
-import 'package:dri_flutter/core/extension/build_context_extension.dart';
+import 'package:r_connector/core/extension/build_context_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

@@ -1,4 +1,4 @@
-import 'package:dri_flutter/features/support_user/presentation/screen/support_user_dashbord.dart';
+import 'package:r_connector/features/dashbord/presentation/screen/dashboard.dart';
 import 'package:flutter/material.dart';
 
 import 'core/services/get_it/service_locator.dart';
@@ -24,8 +24,6 @@ class _EntryScreenState extends State<EntryScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return (token ?? '').isNotEmpty
-        ? const SupportUserDashbord()
-        : const LoginScreen();
+    return (token ?? '').isNotEmpty ? const DashBoard() : const LoginScreen();
   }
 }

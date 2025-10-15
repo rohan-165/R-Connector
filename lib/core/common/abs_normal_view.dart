@@ -1,5 +1,5 @@
-import 'package:dri_flutter/core/extension/build_context_extension.dart';
-import 'package:dri_flutter/widget/pull_to_refresh_widget.dart';
+import 'package:r_connector/core/extension/build_context_extension.dart';
+import 'package:r_connector/widget/pull_to_refresh_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 

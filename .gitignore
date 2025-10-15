@@ -44,6 +44,6 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
-.env.*
-.env.dev
-.env.prod
+*.env.*
+*.env.dev
+*.env.prod

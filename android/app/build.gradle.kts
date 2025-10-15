@@ -43,13 +43,13 @@ android {
     productFlavors {
         create("prod") {
             dimension = "default"
-            manifestPlaceholders["appName"] = "DRI"
+            manifestPlaceholders["appName"] = "R-Connector"
         }
 
         create("dev") {
             dimension = "default"
             applicationIdSuffix = ".dev"
-            manifestPlaceholders["appName"] = "[DEV] DRI"
+            manifestPlaceholders["appName"] = "[DEV] R-Connector"
         }
     }
 }

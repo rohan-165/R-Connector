@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:dri_flutter/core/extension/build_context_extension.dart';
-import 'package:dri_flutter/core/extension/widget_extensions.dart';
+import 'package:r_connector/core/extension/build_context_extension.dart';
+import 'package:r_connector/core/extension/widget_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';

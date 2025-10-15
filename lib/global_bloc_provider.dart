@@ -1,6 +1,6 @@
 // ignore_for_file: depend_on_referenced_packages
 
-import 'package:dri_flutter/features/support_user/presentation/cubit/qr_scan_cubit.dart';
+import 'package:r_connector/features/dashbord/presentation/cubit/file_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/single_child_widget.dart';
 
@@ -11,7 +11,6 @@ import 'core/bloc/location_cubit.dart';
 import 'core/bloc/theme_cubit.dart';
 import 'core/services/get_it/service_locator.dart';
 import 'features/auth/presentation/login_bloc/login_bloc.dart';
-import 'features/support_user/presentation/consignment_detail_bloc/consignment_detail_bloc.dart';
 
 // Short helper to avoid repetitive BlocProvider boilerplate
 BlocProvider<T> _p<T extends StateStreamableSource<Object?>>() =>
@@ -25,10 +24,7 @@ List<SingleChildWidget> _coreBlocProvider() => [
   _p<LoginBloc>(),
   _p<LocationCubit>(),
 ];
-List<SingleChildWidget> _supportBlocProvider() => [
-  _p<QrScanCubit>(),
-  _p<ConsignmentDetailBloc>(),
-];
+List<SingleChildWidget> _supportBlocProvider() => [_p<FileCubit>()];
 
 List<SingleChildWidget> globalBlocProvider() => [
   ..._coreBlocProvider(),

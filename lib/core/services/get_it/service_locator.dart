@@ -1,6 +1,6 @@
 // ignore_for_file: unused_import, dangling_library_doc_comments
 
-import 'package:dri_flutter/core/services/get_it/service_locator.config.dart';
+import 'package:r_connector/core/services/get_it/service_locator.config.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 

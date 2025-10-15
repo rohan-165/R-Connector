@@ -1,22 +1,6 @@
-import 'dart:io';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import 'debug_log_utils.dart';
-
-class AppUpdateUtils {
-  /// Opens Play Store or App Store based on the platform
-  static Future<void> openStore({
-    required String playStoreUrl,
-    required String appStoreUrl,
-  }) async {
-    final Uri url = Uri.parse(Platform.isAndroid ? playStoreUrl : appStoreUrl);
-
-    if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
-      throw Exception('Could not launch $url');
-    }
-  }
-}
 
 Future<String> getAppVersion() async {
   try {

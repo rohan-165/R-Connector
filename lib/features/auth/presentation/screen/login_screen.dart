@@ -1,5 +1,5 @@
-import 'package:dri_flutter/core/extension/build_context_extension.dart';
-import 'package:dri_flutter/core/extension/widget_extensions.dart';
+import 'package:r_connector/core/extension/build_context_extension.dart';
+import 'package:r_connector/core/extension/widget_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -45,18 +45,18 @@ class _LoginScreenState extends State<LoginScreen> {
       body: SafeArea(
         child: BlocBuilder<LoginBloc, LoginState>(
           builder: (context, loginState) {
-            return SingleChildScrollView(
-              child: Form(
-                key: _formKey,
-                child: AutofillGroup(
+            return Form(
+              key: _formKey,
+              child: AutofillGroup(
+                child: Center(
                   child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Department of Revenue Investigation',
-                        style: context.textTheme.titleLarge?.copyWith(
-                          color: AppColors.whiteColor,
-                        ),
+                        'R-Connector',
+                        style: context.textTheme.titleLarge,
                         textAlign: TextAlign.center,
                       ).padBottom(bottom: 20.h).padHorizontal(horizontal: 20.w),
 

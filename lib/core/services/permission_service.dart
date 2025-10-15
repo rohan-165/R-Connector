@@ -4,7 +4,7 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:device_info_plus/device_info_plus.dart';
-import 'package:dri_flutter/widget/permanently_dinied_dialogue.dart';
+import 'package:r_connector/widget/permanently_dinied_dialogue.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import '../constants/enum.dart';

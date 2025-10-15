@@ -1,5 +1,4 @@
-import 'package:dri_flutter/features/support_user/presentation/consignment_detail_bloc/consignment_detail_bloc.dart';
-import 'package:dri_flutter/features/support_user/presentation/cubit/qr_scan_cubit.dart';
+import 'package:r_connector/features/dashbord/presentation/cubit/file_cubit.dart';
 
 import '../bloc/app_open_cubit.dart';
 import '../bloc/language_cubit.dart';
@@ -19,8 +18,7 @@ class AppClearService {
     getIt<ThemeCubit>().resetTheme();
     getIt<LanguageCubit>().resetLanguage();
     getIt<LocationCubit>().reset();
-    getIt<QrScanCubit>().reset();
-    getIt<ConsignmentDetailBloc>().add(ConsignmentDetailResetEvent());
+    getIt<FileCubit>().reset();
 
     getIt<NavigationService>().pushNamedAndRemoveUntil(
       RoutesName.loginScreen,

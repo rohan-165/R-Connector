@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../../features/auth/presentation/screen/login_screen.dart';
-import '../../features/support_user/presentation/screen/consignment_document_screen.dart';
-import '../../features/support_user/presentation/screen/qr_scan_info_screen.dart';
-import '../../features/support_user/presentation/screen/support_user_dashbord.dart';
+import '../../features/dashbord/presentation/screen/sign_form_screen.dart';
+import '../../features/dashbord/presentation/screen/pdf_viewer_screen.dart';
+import '../../features/dashbord/presentation/screen/dashboard.dart';
 import 'routes_name.dart';
 
 class RouteGenerator {
@@ -19,20 +19,20 @@ class RouteGenerator {
           builder: (_) => const LoginScreen(),
         );
 
-      case RoutesName.supportUserDashboard:
+      case RoutesName.dashboard:
         return MaterialPageRoute(
           settings: settings,
-          builder: (_) => const SupportUserDashbord(),
+          builder: (_) => const DashBoard(),
         );
-      case RoutesName.qrScanInfoScreen:
+      case RoutesName.pdfViewerScreen:
         return MaterialPageRoute(
           settings: settings,
-          builder: (_) => const QRScanInfoScreen(),
+          builder: (_) => const PdfViewerScreen(),
         );
-      case RoutesName.consignmentDocumentScreen:
+      case RoutesName.signFormScreen:
         return MaterialPageRoute(
           settings: settings,
-          builder: (_) => const ConsignmentDocumentScreen(),
+          builder: (_) => const SignFormScreen(),
         );
 
       default:

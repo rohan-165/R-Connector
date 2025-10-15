@@ -1,19 +1,18 @@
-import 'package:dri_flutter/core/constants/app_constants.dart';
-import 'package:dri_flutter/core/extension/build_context_extension.dart';
-import 'package:dri_flutter/core/extension/widget_extensions.dart';
-import 'package:dri_flutter/widget/app_bar_widget.dart';
+import 'package:r_connector/core/constants/app_constants.dart';
+import 'package:r_connector/core/extension/build_context_extension.dart';
+import 'package:r_connector/core/extension/widget_extensions.dart';
+import 'package:r_connector/widget/app_bar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class ConsignmentDocumentScreen extends StatefulWidget {
-  const ConsignmentDocumentScreen({super.key});
+class SignFormScreen extends StatefulWidget {
+  const SignFormScreen({super.key});
 
   @override
-  State<ConsignmentDocumentScreen> createState() =>
-      _ConsignmentDocumentScreenState();
+  State<SignFormScreen> createState() => _SignFormScreenState();
 }
 
-class _ConsignmentDocumentScreenState extends State<ConsignmentDocumentScreen>
+class _SignFormScreenState extends State<SignFormScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   final List<String> tabItem = [

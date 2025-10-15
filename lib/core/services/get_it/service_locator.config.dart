@@ -17,10 +17,9 @@ import '../../../features/auth/data/auth_repo_impl.dart' as _i927;
 import '../../../features/auth/domain/repo/auth_repo.dart' as _i913;
 import '../../../features/auth/presentation/login_bloc/login_bloc.dart'
     as _i1002;
-import '../../../features/support_user/presentation/consignment_detail_bloc/consignment_detail_bloc.dart'
-    as _i677;
-import '../../../features/support_user/presentation/cubit/qr_scan_cubit.dart'
-    as _i936;
+import '../../../features/dashbord/data/repo/repo_impl.dart' as _i389;
+import '../../../features/dashbord/domain/repo/repo.dart' as _i752;
+import '../../../features/dashbord/presentation/cubit/file_cubit.dart' as _i438;
 import '../../bloc/app_open_cubit.dart' as _i150;
 import '../../bloc/internet_cubit.dart' as _i636;
 import '../../bloc/language_cubit.dart' as _i957;
@@ -53,18 +52,16 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i957.LanguageCubit>(() => _i957.LanguageCubit());
     gh.lazySingleton<_i150.AppOpenCubit>(() => _i150.AppOpenCubit());
     gh.lazySingleton<_i67.LocationCubit>(() => _i67.LocationCubit());
-    gh.lazySingleton<_i677.ConsignmentDetailBloc>(
-      () => _i677.ConsignmentDetailBloc(),
-    );
-    gh.lazySingleton<_i936.QrScanCubit>(() => _i936.QrScanCubit());
     gh.lazySingleton<_i1002.LoginBloc>(() => _i1002.LoginBloc());
-    gh.lazySingleton<_i324.SharedPrefData>(() => _i566.SharedPrefDataImpl());
+    gh.lazySingleton<_i438.FileCubit>(() => _i438.FileCubit());
     gh.lazySingleton<_i913.AuthRepo>(() => _i927.AuthRepoImpl());
-    gh.lazySingleton<_i942.SharedPrefsServices>(
-      () => _i942.SharedPrefsServices(gh<_i460.SharedPreferences>()),
-    );
     gh.lazySingleton<_i601.ApiRequest>(
       () => _i601.ApiRequestImpl(gh<_i609.ApiManager>()),
+    );
+    gh.lazySingleton<_i324.SharedPrefData>(() => _i566.SharedPrefDataImpl());
+    gh.lazySingleton<_i752.DashboardRepo>(() => _i389.DashboardRepoImpl());
+    gh.lazySingleton<_i942.SharedPrefsServices>(
+      () => _i942.SharedPrefsServices(gh<_i460.SharedPreferences>()),
     );
     return this;
   }
