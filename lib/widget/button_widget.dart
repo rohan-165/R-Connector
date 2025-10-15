@@ -33,44 +33,43 @@ class ButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-          height: height?.h ?? 48.h,
-          alignment: Alignment.center,
-          width: width,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(4.r),
-            color: (buttonColor ?? AppColors.primaryColor),
-            border: Border.all(color: (borderColor ?? AppColors.primaryColor)),
-          ),
-          child: isLoading
-              ? ThreeDotLoader().padVertical(vertical: 8.h)
-              : (prifixIcon ?? '').isNotEmpty
-              ? Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Image.asset(prifixIcon!, height: 20.w),
-                    10.w.horizontalSpace,
-                    Text(
-                      lable ?? context.l10(AppLocale.submit),
-                      style: context.textTheme.titleLarge?.copyWith(
-                        color: lableColor ?? AppColors.whiteColor,
-                      ),
+    return InkWell(
+      onTap: () => DebounceUtils().run(onTap),
+      child: Container(
+        height: height?.h ?? 48.h,
+        alignment: Alignment.center,
+        width: width,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(4.r),
+          color: (buttonColor ?? AppColors.primaryColor),
+          border: Border.all(color: (borderColor ?? AppColors.primaryColor)),
+        ),
+        child: isLoading
+            ? ThreeDotLoader().padVertical(vertical: 8.h)
+            : (prifixIcon ?? '').isNotEmpty
+            ? Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Image.asset(prifixIcon!, height: 20.w),
+                  10.w.horizontalSpace,
+                  Text(
+                    lable ?? context.l10(AppLocale.submit),
+                    style: context.textTheme.titleLarge?.copyWith(
+                      color: lableColor ?? AppColors.whiteColor,
                     ),
-                  ],
-                )
-              : Text(
-                  lable ?? context.l10(AppLocale.submit),
-                  style: context.textTheme.titleLarge?.copyWith(
-                    color: lableColor ?? AppColors.whiteColor,
                   ),
-                ).padHorizontal(horizontal: 20.w).padVertical(vertical: 8.h),
-        )
-        .onTap(() {
-          DebounceUtils().run(onTap);
-        })
-        .padHorizontal(horizontal: horizontal ?? 20.w);
+                ],
+              )
+            : Text(
+                lable ?? context.l10(AppLocale.submit),
+                style: context.textTheme.titleLarge?.copyWith(
+                  color: lableColor ?? AppColors.whiteColor,
+                ),
+              ).padHorizontal(horizontal: 20.w).padVertical(vertical: 8.h),
+      ).padHorizontal(horizontal: horizontal ?? 20.w),
+    );
   }
 }
 

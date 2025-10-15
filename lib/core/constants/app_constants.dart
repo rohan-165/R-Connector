@@ -19,6 +19,15 @@ class NavBarConstants {
   static const String profile = 'Profile';
 }
 
+class ConsignmentDocTap {
+  ConsignmentDocTap._();
+  static const String bill = 'BILL';
+  static const String challan = 'CHALLAN';
+  static const String pragyapanPatra = 'PRAGYAPAN PATRA';
+  static const String drcr = 'DR/CR';
+  static const String other = 'OTHER';
+}
+
 class Constants {
   //FOR START AND END DELIVERY: delivery status conditions
   static String delivered = "2";

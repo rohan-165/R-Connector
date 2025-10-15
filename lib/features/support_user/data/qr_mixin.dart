@@ -1,18 +1,20 @@
-import 'dart:convert';
 import 'package:dri_flutter/core/constants/enum.dart';
-import 'package:dri_flutter/core/routes/routes_name.dart';
 import 'package:dri_flutter/core/services/get_it/service_locator.dart';
 import 'package:dri_flutter/core/services/navigation_service.dart';
 import 'package:dri_flutter/core/services/permission_service.dart';
 import 'package:dri_flutter/core/utils/app_toast.dart';
 import 'package:dri_flutter/core/utils/debug_log_utils.dart';
-import 'package:dri_flutter/features/support_user/domain/model/scan_model.dart';
+import 'package:dri_flutter/features/support_user/presentation/cubit/qr_scan_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:ai_barcode_scanner/ai_barcode_scanner.dart';
 import '../../../core/utils/lzstring.dart';
-import '../presentation/consignment_detail_bloc/consignment_detail_bloc.dart';
 
 mixin QrMixin {
+  static const String _hasData =
+      'N4Ig9gdiBcIBYBcEAcDO0A6B6bA3AxgqgCYBOAlgHRlUDmYulEy2AhsudvmALY+RtUqcrQgBTYgGFIw0TzEQEAETEJW5ADbYAHAEZtAJgAMu3UYCsAFl3ntIADTgAZk5ih85GCD2GTZqzZ2jvhQsBgArkYAnEYA7BHRBtoJUZbEKQYARimWmQAEGbo58ZFRBumlAMwGGawplUY5FdGV2gWlBnWlafWNVWKU9TVVTpQOIPjIXg02NlHaAGzjuKEgAAoASgCCSgCiAMoAEsYGugaW5gDSh1sL5rqWywhea+GZGuT448SrANYK5Ey3x4q3mliMCyM2ihum+yGIXgAMltEQBJAAqawAqhs4RovPstgA5XZrLbfBAI2CXLbow4AWWJSixFPx1NpDKZWLy32Iz1gxkMAFojAYhac8rpYtADJUZeZvqgvBAwONSDwvAgxKhno5iGzQEDYEZxl9jeMpua9aQvAZxqqrRMbY6IEaQCaAL6OHhs93jH1UiDhDQaD0eoA==';
+
+  void qrScanStatic() => getIt<QrScanCubit>().getScanData(hasString: _hasData);
+
   Future<void> qrScanner(BuildContext context) async {
     PermissionService.requestPermission(
       permissionFor: PermissionFor.camera,
@@ -28,61 +30,10 @@ mixin QrMixin {
                     message: 'No QR code detected!',
                     toastType: ToastType.ERROR,
                   );
-                  return;
-                }
-
-                DebugLoggerService.log(
-                  'QR raw value: $rawValue',
-                  level: LogLevel.debug,
-                );
-
-                final decompressed = await decompressFromBase64(rawValue);
-
-                if (decompressed == null) {
-                  AppToasts.showToast(
-                    message:
-                        'Failed to read QR data — invalid or corrupted code.',
-                    toastType: ToastType.ERROR,
-                  );
                   getIt<NavigationService>().safePop();
                   return;
                 }
-
-                DebugLoggerService.log(
-                  'Decompressed payload: $decompressed',
-                  level: LogLevel.debug,
-                );
-
-                try {
-                  final decoded = jsonDecode(decompressed);
-
-                  if (decoded is! Map<String, dynamic>) {
-                    throw const FormatException('Unexpected JSON structure');
-                  }
-
-                  final scanData = ScanData.fromJson(decoded);
-
-                  getIt<ConsignmentDetailBloc>().add(
-                    ConsignmentScanDetailEvent(scanData: scanData),
-                  );
-
-                  // Navigate to detail page
-                  getIt<NavigationService>().pushReplacementNamed(
-                    RoutesName.consignmentDetailScreen,
-                  );
-                } catch (e, st) {
-                  DebugLoggerService.log(
-                    'Error parsing QR data: $e\n$st',
-                    level: LogLevel.error,
-                  );
-
-                  AppToasts.showToast(
-                    message: 'Invalid QR content or no data found.',
-                    toastType: ToastType.ERROR,
-                  );
-
-                  getIt<NavigationService>().safePop();
-                }
+                getIt<QrScanCubit>().getScanData(hasString: rawValue);
               },
             ),
           ),

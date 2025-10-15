@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../features/auth/presentation/screen/login_screen.dart';
-import '../../features/support_user/presentation/screen/consignment_detail_screen.dart';
+import '../../features/support_user/presentation/screen/consignment_document_screen.dart';
+import '../../features/support_user/presentation/screen/qr_scan_info_screen.dart';
 import '../../features/support_user/presentation/screen/support_user_dashbord.dart';
 import 'routes_name.dart';
 
@@ -23,10 +24,15 @@ class RouteGenerator {
           settings: settings,
           builder: (_) => const SupportUserDashbord(),
         );
-      case RoutesName.consignmentDetailScreen:
+      case RoutesName.qrScanInfoScreen:
         return MaterialPageRoute(
           settings: settings,
-          builder: (_) => const ConsignmentDetailScreen(),
+          builder: (_) => const QRScanInfoScreen(),
+        );
+      case RoutesName.consignmentDocumentScreen:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) => const ConsignmentDocumentScreen(),
         );
 
       default:
