@@ -21,6 +21,7 @@ import '../../../features/dashbord/data/repo/repo_impl.dart' as _i389;
 import '../../../features/dashbord/domain/repo/repo.dart' as _i752;
 import '../../../features/dashbord/presentation/cubit/file_cubit.dart' as _i438;
 import '../../../features/dashbord/presentation/cubit/pdf_cubit.dart' as _i109;
+import '../../../features/dashbord/presentation/cubit/sign_cubit.dart' as _i211;
 import '../../bloc/app_open_cubit.dart' as _i150;
 import '../../bloc/internet_cubit.dart' as _i636;
 import '../../bloc/language_cubit.dart' as _i957;
@@ -55,6 +56,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i67.LocationCubit>(() => _i67.LocationCubit());
     gh.lazySingleton<_i1002.LoginBloc>(() => _i1002.LoginBloc());
     gh.lazySingleton<_i109.PdfCubit>(() => _i109.PdfCubit());
+    gh.lazySingleton<_i211.SignCubit>(() => _i211.SignCubit());
     gh.lazySingleton<_i438.FileCubit>(() => _i438.FileCubit());
     gh.lazySingleton<_i913.AuthRepo>(() => _i927.AuthRepoImpl());
     gh.lazySingleton<_i601.ApiRequest>(

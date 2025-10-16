@@ -12,6 +12,7 @@ import 'core/bloc/location_cubit.dart';
 import 'core/bloc/theme_cubit.dart';
 import 'core/services/get_it/service_locator.dart';
 import 'features/auth/presentation/login_bloc/login_bloc.dart';
+import 'features/dashbord/presentation/cubit/sign_cubit.dart';
 
 // Short helper to avoid repetitive BlocProvider boilerplate
 BlocProvider<T> _p<T extends StateStreamableSource<Object?>>() =>
@@ -28,6 +29,7 @@ List<SingleChildWidget> _coreBlocProvider() => [
 List<SingleChildWidget> _supportBlocProvider() => [
   _p<FileCubit>(),
   _p<PdfCubit>(),
+  _p<SignCubit>(),
 ];
 
 List<SingleChildWidget> globalBlocProvider() => [

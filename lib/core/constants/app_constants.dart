@@ -14,6 +14,6 @@ class StampOrText {
 
 class FileCertificatType {
   static const String CERT_BYTES = 'CERT_BYTES';
-  static const String CER_OFFLINE_PATH = 'CERT_BYTES';
-  static const String CER_ONLINE_PATH = 'CERT_BYTES';
+  static const String CER_OFFLINE_PATH = 'CER_OFFLINE_PATH';
+  static const String CER_ONLINE_PATH = 'CER_ONLINE_PATH';
 }
