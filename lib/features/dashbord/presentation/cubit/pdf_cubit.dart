@@ -1,5 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
@@ -20,17 +20,17 @@ class PdfCubit extends Cubit<AbsNormalState<PdfModel>> {
     emit(
       state.copyWith(
         absNormalStatus: AbsNormalStatus.LOADING,
-        data: state.data?.copyWith(fileName: filePath),
+        data: PdfModel(fileName: filePath),
       ),
     );
 
-    final file = await getIt<DashboardRepo>().fetchPdfFile(filePath: filePath);
+    final file = await getIt<DashboardRepo>().fetchPdfData(filePath: filePath);
 
     if (file != null) {
       emit(
         state.copyWith(
           absNormalStatus: AbsNormalStatus.SUCCESS,
-          data: state.data?.copyWith(pdfFile: file),
+          data: PdfModel(pdfFile: file, fileName: filePath),
         ),
       );
     } else {
@@ -38,6 +38,7 @@ class PdfCubit extends Cubit<AbsNormalState<PdfModel>> {
         state.copyWith(
           absNormalStatus: AbsNormalStatus.ERROR,
           failure: Failure(message: 'Failed to fetch PDF'),
+          data: PdfModel(fileName: filePath),
         ),
       );
     }
@@ -46,10 +47,10 @@ class PdfCubit extends Cubit<AbsNormalState<PdfModel>> {
 
 class PdfModel {
   String? fileName;
-  File? pdfFile;
+  Uint8List? pdfFile;
   PdfModel({this.fileName, this.pdfFile});
 
-  PdfModel copyWith({String? fileName, File? pdfFile}) {
+  PdfModel copyWith({String? fileName, Uint8List? pdfFile}) {
     return PdfModel(
       fileName: fileName ?? this.fileName,
       pdfFile: pdfFile ?? this.pdfFile,

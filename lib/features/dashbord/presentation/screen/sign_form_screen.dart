@@ -1,9 +1,9 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:r_connector/core/constants/app_constants.dart';
-import 'package:r_connector/core/extension/build_context_extension.dart';
 import 'package:r_connector/core/extension/widget_extensions.dart';
 import 'package:r_connector/widget/app_bar_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:r_connector/widget/dropdown_widget.dart';
 
 class SignFormScreen extends StatefulWidget {
   const SignFormScreen({super.key});
@@ -12,65 +12,53 @@ class SignFormScreen extends StatefulWidget {
   State<SignFormScreen> createState() => _SignFormScreenState();
 }
 
-class _SignFormScreenState extends State<SignFormScreen>
-    with SingleTickerProviderStateMixin {
-  late TabController _tabController;
-  final List<String> tabItem = [
-    ConsignmentDocTap.bill,
-    ConsignmentDocTap.challan,
-    ConsignmentDocTap.pragyapanPatra,
-    ConsignmentDocTap.drcr,
-    ConsignmentDocTap.other,
+class _SignFormScreenState extends State<SignFormScreen> {
+  final signPage = ValueNotifier<String>(SignPage.all);
+  final certificateFileSource = ValueNotifier<String>(
+    FileCertificatType.CER_OFFLINE_PATH,
+  );
+  final stampSource = ValueNotifier<String>(
+    FileCertificatType.CER_OFFLINE_PATH,
+  );
+  final qrImageSource = ValueNotifier<String>(
+    FileCertificatType.CER_OFFLINE_PATH,
+  );
+  final unsignedSource = ValueNotifier<String>(
+    FileCertificatType.CER_OFFLINE_PATH,
+  );
+  final publicCertificateFileSource = ValueNotifier<String>(
+    FileCertificatType.CER_OFFLINE_PATH,
+  );
+  final stampRoText = ValueNotifier<String>('');
+  final List<String> _stamporTexxt = [StampOrText.stamp, StampOrText.text];
+  final List<String> _signPage = [
+    SignPage.all,
+    SignPage.first,
+    SignPage.last,
+    SignPage.odd,
   ];
-  @override
-  void initState() {
-    _tabController = TabController(length: tabItem.length, vsync: this);
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _tabController.dispose();
-    super.dispose();
-  }
+  final List<String> _fileCertificatType = [
+    FileCertificatType.CERT_BYTES,
+    FileCertificatType.CER_OFFLINE_PATH,
+    FileCertificatType.CER_ONLINE_PATH,
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarWidget(showBackButton: true, title: 'Consignment Document'),
+      appBar: AppBarWidget(showBackButton: true, title: 'Sign Form'),
       body: Column(
         children: [
-          TabBar(
-            tabs: tabItem
-                .map(
-                  (e) => Text(
-                    e,
-                    style: context.textTheme.bodySmall?.copyWith(
-                      fontSize: 11.sp,
-                      fontWeight: FontWeight.w800,
-                    ),
-                  ),
-                )
-                .toList(),
-            controller: _tabController,
-          ),
-          Expanded(
-            child: TabBarView(
-              controller: _tabController,
-              children: tabItem
-                  .map(
-                    (e) => Center(
-                      child: Text(
-                        "No Data",
-                        style: context.textTheme.titleLarge,
-                      ),
-                    ),
-                  )
-                  .toList(),
-            ).padAll(value: 10.w),
+          ValueListenableBuilder(
+            valueListenable: signPage,
+            builder: (_, value, __) {
+              return DropdownWidget<String>(
+                items: (filter, loadProps) => _signPage,
+              ).padBottom(bottom: 10.h);
+            },
           ),
         ],
-      ),
+      ).padAll(),
     );
   }
 }
