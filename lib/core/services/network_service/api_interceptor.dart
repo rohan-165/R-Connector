@@ -12,9 +12,9 @@ class ApiInterceptor extends Interceptor {
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     String accessToken = getIt<SharedPrefData>().getAuthToken;
 
-    if (accessToken.isNotEmpty) {
-      options.headers.putIfAbsent('Authorization', () => 'Bearer $accessToken');
-    }
+    // if (accessToken.isNotEmpty) {
+    //   options.headers.putIfAbsent('Authorization', () => 'Bearer $accessToken');
+    // }
     return super.onRequest(options, handler);
   }
 }
