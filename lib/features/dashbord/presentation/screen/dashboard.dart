@@ -5,15 +5,19 @@ import 'package:r_connector/core/constants/app_colors.dart';
 import 'package:r_connector/core/extension/build_context_extension.dart';
 import 'package:r_connector/core/extension/widget_extensions.dart';
 import 'package:r_connector/core/localization/app_locale.dart';
+import 'package:r_connector/core/routes/routes_name.dart';
 import 'package:r_connector/core/services/app_clear_service.dart';
 import 'package:r_connector/core/services/get_it/service_locator.dart';
 import 'package:r_connector/core/utils/decore_utils.dart';
 import 'package:r_connector/features/dashbord/domain/model/file_model.dart';
 import 'package:r_connector/features/dashbord/presentation/cubit/file_cubit.dart';
+import 'package:r_connector/features/dashbord/presentation/cubit/pdf_cubit.dart';
 import 'package:r_connector/widget/app_bar_widget.dart';
 import 'package:r_connector/widget/app_exit_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../../core/services/navigation_service.dart';
 
 class DashBoard extends StatefulWidget {
   const DashBoard({super.key});
@@ -61,14 +65,24 @@ class _DashBoardState extends State<DashBoard> {
                 physics: BouncingScrollPhysics(
                   parent: AlwaysScrollableScrollPhysics(),
                 ),
-                itemBuilder: (ctx, index) => Container(
-                  padding: EdgeInsets.all(10.w),
-                  decoration: boxDecoration(context),
-                  child: Row(
-                    children: [
-                      Icon(Icons.file_copy).padRight(right: 10.w),
-                      Expanded(child: Text(list[index].filePath ?? '')),
-                    ],
+                itemBuilder: (ctx, index) => InkWell(
+                  onTap: () {
+                    getIt<PdfCubit>().getPdf(
+                      filePath: list[index].filePath ?? '',
+                    );
+                    getIt<NavigationService>().pushNamed(
+                      RoutesName.pdfViewerScreen,
+                    );
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(10.w),
+                    decoration: boxDecoration(context),
+                    child: Row(
+                      children: [
+                        Icon(Icons.file_copy).padRight(right: 10.w),
+                        Expanded(child: Text(list[index].filePath ?? '')),
+                      ],
+                    ),
                   ),
                 ),
                 separatorBuilder: (ctx, index) => 10.verticalSpace,

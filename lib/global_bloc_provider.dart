@@ -3,6 +3,7 @@
 import 'package:r_connector/features/dashbord/presentation/cubit/file_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/single_child_widget.dart';
+import 'package:r_connector/features/dashbord/presentation/cubit/pdf_cubit.dart';
 
 import 'core/bloc/app_open_cubit.dart';
 import 'core/bloc/internet_cubit.dart';
@@ -24,7 +25,10 @@ List<SingleChildWidget> _coreBlocProvider() => [
   _p<LoginBloc>(),
   _p<LocationCubit>(),
 ];
-List<SingleChildWidget> _supportBlocProvider() => [_p<FileCubit>()];
+List<SingleChildWidget> _supportBlocProvider() => [
+  _p<FileCubit>(),
+  _p<PdfCubit>(),
+];
 
 List<SingleChildWidget> globalBlocProvider() => [
   ..._coreBlocProvider(),

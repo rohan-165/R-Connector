@@ -1,6 +1,8 @@
+import 'dart:io';
+
 import 'package:r_connector/core/constants/typedef.dart';
 
 abstract class DashboardRepo {
   FutureDynamicResponse getFile();
-  FutureDynamicResponse getPdf({required String filePath});
+  Future<File?> fetchPdfFile({required String filePath});
 }
